@@ -1,8 +1,11 @@
 {
-  "generatedAt": "2026-08-08T08:15:00Z",
+  "generatedAt": "2026-08-08T16:15:20.791897+00:00",
   "amfiMemberRegistry": {
-    "ok": false,
-    "note": "Awaiting first GitHub Official AMC Watch run"
+    "ok": true,
+    "checkedAt": "2026-08-08T16:15:20.791897+00:00",
+    "latencyMs": 1212,
+    "error": null,
+    "note": "AMFI member index unavailable/unparseable; retained prior AMC registry."
   },
   "respondingHomepages": 0,
   "officialWebsites": 0
