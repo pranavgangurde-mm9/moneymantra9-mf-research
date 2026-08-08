@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-08-08T08:15:00Z",
+  "generatedAt": "2026-08-08T16:45:26.780743+00:00",
   "registeredOfficialWebsites": 0,
   "respondingHomepages": 0,
   "count": 0,
   "items": [],
   "amcStatus": [],
-  "policy": "Seed placeholder. Official AMC watch runs every 4 hours after GitHub deployment."
+  "policy": "Official AMC website discovery layer. It supplements AMFI/SEBI and is never used to silently overwrite conflicting authoritative central data. Page scanning is bounded and fail-soft."
 }
