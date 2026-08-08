@@ -401,7 +401,7 @@
     },
     "mfdata-deep": {
       "ok": false,
-      "checkedAt": "2026-08-08T17:02:40.023995+00:00",
+      "checkedAt": "2026-08-08T17:06:02.308928+00:00",
       "attempted": 0,
       "success": 0,
       "failure": 0,
@@ -419,5 +419,5 @@
   "alertRefreshAt": "2026-08-08T16:49:25.484486+00:00",
   "discoveryRefreshAt": "2026-08-08T16:49:25.484486+00:00",
   "registeredAMCCount": 60,
-  "deepLastAttemptAt": "2026-08-08T17:02:40.023995+00:00"
+  "deepLastAttemptAt": "2026-08-08T17:06:02.308928+00:00"
 }
