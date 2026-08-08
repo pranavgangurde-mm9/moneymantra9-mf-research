@@ -321,10 +321,19 @@ def fetch_mfdata_live():
         j = fetch("mfdata-schemes" if offset == 0 else f"mfdata-schemes-{offset//limit+1}", f"{MFDATA_SCHEMES}?limit={limit}&offset={offset}", 35, accept_json=True)
         if not j:
             break
-        arr = j.get("data", j if isinstance(j, list) else [])
+        if isinstance(j, list):
+            arr = j
+        elif isinstance(j, dict):
+            arr = j.get("data") or j.get("schemes") or j.get("results") or []
+        else:
+            arr = []
+        if isinstance(arr, dict):
+            arr = arr.get("data") or arr.get("schemes") or arr.get("results") or []
         if not isinstance(arr, list):
             break
         for z in arr:
+            if not isinstance(z, dict):
+                continue
             code = z.get("scheme_code") or z.get("amfi_code") or z.get("code")
             try: code = int(code)
             except Exception: continue
@@ -351,22 +360,50 @@ def fetch_mfdata_live():
 
 
 def fetch_mfapi_live():
+    """Read MFapi's latest-schemes payload defensively.
+
+    MFapi has returned both a top-level JSON list and wrapped dictionary
+    payloads over time.  Treat either shape as valid and ignore malformed
+    rows instead of aborting the complete universe refresh.
+    """
     j = fetch("mfapi-latest", MFAPI_LATEST, 60, accept_json=True)
     if not j:
         return []
-    arr = j.get("data", j if isinstance(j, list) else [])
+
+    if isinstance(j, list):
+        arr = j
+    elif isinstance(j, dict):
+        arr = j.get("data") or j.get("schemes") or j.get("results") or []
+    else:
+        arr = []
+
+    # Some API gateways wrap the actual list one level deeper.
     if isinstance(arr, dict):
-        arr = arr.get("data") or arr.get("schemes") or []
+        arr = arr.get("data") or arr.get("schemes") or arr.get("results") or []
+    if not isinstance(arr, list):
+        arr = []
+
     out = []
-    if isinstance(arr, list):
-        for z in arr:
-            code = z.get("schemeCode") or z.get("scheme_code") or z.get("code")
-            try: code = int(code)
-            except Exception: continue
-            name = z.get("schemeName") or z.get("scheme_name") or z.get("name") or ""
-            out.append({"code": code, "name": name, "baseName": strip_variant(name), "nav": fnum(z.get("nav")),
-                        "navDate": date_iso(z.get("date") or z.get("nav_date")), "active": True, "sourceLive": "MFapi.in"})
-    HEALTH["mfapi-latest"]["records"] = len(out)
+    for z in arr:
+        if not isinstance(z, dict):
+            continue
+        code = z.get("schemeCode") or z.get("scheme_code") or z.get("code")
+        try:
+            code = int(code)
+        except Exception:
+            continue
+        name = z.get("schemeName") or z.get("scheme_name") or z.get("name") or ""
+        out.append({
+            "code": code,
+            "name": name,
+            "baseName": strip_variant(name),
+            "nav": fnum(z.get("nav")),
+            "navDate": date_iso(z.get("date") or z.get("nav_date")),
+            "active": True,
+            "sourceLive": "MFapi.in",
+        })
+
+    HEALTH.setdefault("mfapi-latest", {})["records"] = len(out)
     return out
 
 
