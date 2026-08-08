@@ -36,7 +36,7 @@ def write(path, obj, indent=None):
 def session():
     s = requests.Session()
     s.headers.update({"User-Agent":"MoneyMantra9-MF-Research/8.0 (+GitHub Actions; deep enrichment)","Accept":"application/json"})
-    retry = Retry(total=3, connect=3, read=3, status=3, backoff_factor=1.2,
+    retry = Retry(total=1, connect=1, read=1, status=1, backoff_factor=0.8,
                   status_forcelist=(408,429,500,502,503,504), allowed_methods=frozenset(["GET"]), respect_retry_after_header=True)
     s.mount("https://", HTTPAdapter(max_retries=retry, pool_connections=4, pool_maxsize=4))
     return s
@@ -44,7 +44,7 @@ def session():
 S = session()
 _LAST_REQUEST = 0.0
 
-def api_json(url, timeout=35):
+def api_json(url, timeout=18):
     """Rate-limited GET respecting mfdata's documented 30 standard requests/minute."""
     global _LAST_REQUEST
     wait = PAUSE_SECONDS - (time.monotonic() - _LAST_REQUEST)
@@ -61,6 +61,62 @@ def api_json(url, timeout=35):
         r = S.get(url, timeout=timeout); _LAST_REQUEST = time.monotonic()
     r.raise_for_status()
     return r.json()
+
+
+def source_health_check():
+    """Quickly determine whether mfdata is reachable before launching a slow batch.
+
+    A provider outage must not cause 80 long retries or falsely mark stale deep data
+    as freshly updated. Returns (ok, detail).
+    """
+    probes = [
+        "https://mfdata.in/health",
+        "https://mfdata.in/api/v1/stats",
+    ]
+    errors=[]
+    for url in probes:
+        try:
+            r=S.get(url,timeout=10)
+            if 200 <= r.status_code < 300:
+                return True, f"{url} HTTP {r.status_code}"
+            errors.append(f"{url} HTTP {r.status_code}")
+        except Exception as e:
+            errors.append(f"{url}: {type(e).__name__}: {str(e)[:140]}")
+    return False, " | ".join(errors)[:500]
+
+
+def write_unavailable_status(funds, deep, reason):
+    """Preserve prior deep values, record a failed source check, and exit cleanly."""
+    now=NOW.isoformat()
+    prev_bycode=deep.get("byCode",{}) if isinstance(deep,dict) else {}
+    write(DATA/"deep_cursor.json",{
+        "lastAttemptAt":now,
+        "lastRun":load(DATA/"deep_cursor.json",{}).get("lastRun"),
+        "batchSize":0,
+        "success":0,
+        "failure":0,
+        "sourceAvailable":False,
+        "preservedPrevious":True,
+        "reason":reason,
+        "policy":"External deep-data source unavailable; previous valid deep fields were retained and not relabelled as fresh."
+    },indent=2)
+    meta=load(DATA/"meta.json",{})
+    meta["schemaVersion"]=8
+    meta["deepLastAttemptAt"]=now
+    sh=meta.setdefault("sourceHealth",{})
+    sh["mfdata-deep"]={
+        "ok":False,
+        "checkedAt":now,
+        "attempted":0,
+        "success":0,
+        "failure":0,
+        "preservedPrevious":True,
+        "detail":reason
+    }
+    # IMPORTANT: do not change deepRefreshAt here; that timestamp means a successful refresh.
+    write(DATA/"meta.json",meta,indent=2)
+    print(f"::warning::Deep source unavailable. Previous deep data retained. {reason}")
+    print(json.dumps({"sourceAvailable":False,"preservedPrevious":True,"deepCodes":len(prev_bycode),"reason":reason},indent=2))
 
 
 def num(v):
@@ -214,6 +270,70 @@ def enrich_family(family_id):
             out["managerDetails"]=cleaned
             out["fundManagers"]=', '.join(x['name'] for x in cleaned)
     except Exception as e: out["peopleError"]=str(e)[:180]
+    # Ratios: dedicated family endpoint is richer and more stable than trying to
+    # infer every ratio from the scheme-profile payload.
+    try:
+        rat=unwrap(api_json(f"https://mfdata.in/api/v1/families/{fid}/ratios"))
+        if isinstance(rat,dict):
+            val=rat.get("valuation",{}) if isinstance(rat.get("valuation"),dict) else {}
+            risk=rat.get("risk",{}) if isinstance(rat.get("risk"),dict) else {}
+            ret=rat.get("return",{}) if isinstance(rat.get("return"),dict) else {}
+            eff=rat.get("efficiency",{}) if isinstance(rat.get("efficiency"),dict) else {}
+            cat=rat.get("category_avg",{}) if isinstance(rat.get("category_avg"),dict) else {}
+            mapping={
+                "pe": val.get("pe"), "pb": val.get("pb"), "ps": val.get("ps"),
+                "dividendYield": val.get("dividend_yield"),
+                "standardDeviationSource": risk.get("std_deviation") or risk.get("standard_deviation"),
+                "beta": risk.get("beta"), "sortinoSource": risk.get("sortino"),
+                "rSquared": risk.get("r_squared"),
+                "sharpeSource": ret.get("sharpe"), "alpha": ret.get("alpha"),
+                "treynor": ret.get("treynor"), "informationRatio": ret.get("information_ratio"),
+                "roe": eff.get("roe"), "roa": eff.get("roa"),
+            }
+            for k,v in mapping.items():
+                n=num(v)
+                if n is not None: out[k]=n
+            if cat:
+                out["categoryAverageRatios"]={k:num(v) for k,v in cat.items() if num(v) is not None}
+    except Exception as e: out["ratiosError"]=str(e)[:180]
+
+    # Risk-detail endpoint: capture ratios, drawdown and risk/return position.
+    try:
+        rd=unwrap(api_json(f"https://mfdata.in/api/v1/families/{fid}/risk-detail"))
+        if isinstance(rd,dict):
+            cap=rd.get("capture_ratios",{}) if isinstance(rd.get("capture_ratios"),dict) else {}
+            dd=rd.get("drawdown",{}) if isinstance(rd.get("drawdown"),dict) else {}
+            rr=rd.get("risk_return",{}) if isinstance(rd.get("risk_return"),dict) else {}
+            vals={
+                "upsideCapture":cap.get("upside_capture"),
+                "downsideCapture":cap.get("downside_capture"),
+                "maxDrawdownSource":dd.get("max_drawdown_pct"),
+                "drawdownRecoveryDays":dd.get("recovery_days"),
+                "annualizedReturnSource":rr.get("annualized_return"),
+                "annualizedRiskSource":rr.get("annualized_risk"),
+            }
+            for k,v in vals.items():
+                n=num(v)
+                if n is not None: out[k]=n
+            if dd.get("drawdown_date"): out["drawdownDate"]=dd.get("drawdown_date")
+            if rd.get("analyst_rating"): out["analystRating"]=rd.get("analyst_rating")
+    except Exception as e: out["riskDetailError"]=str(e)[:180]
+
+    # Annual performance is useful context and is slow-changing; keep a compact history.
+    try:
+        perf=unwrap(api_json(f"https://mfdata.in/api/v1/families/{fid}/performance"))
+        if isinstance(perf,dict):
+            ar=perf.get("annual_returns") if isinstance(perf.get("annual_returns"),list) else []
+            cleaned=[]
+            for x in ar[:12]:
+                if not isinstance(x,dict): continue
+                cleaned.append({"year":x.get("year"),"returnPct":num(x.get("return_pct")),"percentileRank":num(x.get("percentile_rank"))})
+            if cleaned: out["annualPerformance"]=cleaned
+            g=perf.get("growth_of_10k") if isinstance(perf.get("growth_of_10k"),dict) else {}
+            if g:
+                out["growthOf10k"]={"currentValue":num(g.get("current_value")),"startDate":g.get("start_date")}
+    except Exception as e: out["performanceError"]=str(e)[:180]
+
     # Holdings: retain only top positions so the published app stays compact.
     try:
         h=unwrap(api_json(f"https://mfdata.in/api/v1/families/{fid}/holdings"))
@@ -254,9 +374,13 @@ def main():
     deep=load(DATA/"deep_metrics.json",{"generatedAt":None,"byCode":{}})
     bycode=deep.get("byCode",{}) if isinstance(deep,dict) else {}
     cursor=load(DATA/"deep_cursor.json",{"lastRun":None,"success":0,"failure":0})
+    healthy, health_detail = source_health_check()
+    if not healthy:
+        write_unavailable_status(funds, deep, health_detail)
+        return
     candidates=representative_codes(funds)
     selected=candidates[:BATCH_SIZE]
-    ok=0; fail=0; details={}
+    ok=0; fail=0; details={}; error_samples=[]
     for i,(code,_,_) in enumerate(selected):
         try:
             d=extract(api_json(MFDATA_DETAIL.format(code=code)))
@@ -272,13 +396,18 @@ def main():
             else: fail+=1
         except Exception as e:
             fail+=1
-            bycode.setdefault(code,{})["lastError"] = str(e)[:300]
+            msg=f"{type(e).__name__}: {str(e)[:260]}"
+            bycode.setdefault(code,{})["lastError"] = msg
             bycode[code]["lastAttemptAt"] = NOW.isoformat()
+            if len(error_samples) < 8: error_samples.append({"code":code,"error":msg})
 
     # Merge non-null deep fields into the fund master. Do not erase good old values.
     allowed=["benchmark","riskometer","exitLoad","minInvestment","minSip","fundManagers","pe","pb","turnover","ytm",
              "modifiedDuration","averageMaturity","equityAllocation","debtAllocation","cashAllocation","alpha","beta",
-             "informationRatio","trackingError","rating","familyId","portfolioDate","otherAllocation","topSectors","creditQuality","managerDetails","topHoldings","holdingCount","portfolioMonth"]
+             "informationRatio","trackingError","rating","familyId","portfolioDate","otherAllocation","topSectors","creditQuality","managerDetails","topHoldings","holdingCount","portfolioMonth",
+             "dividendYield","ps","rSquared","treynor","roe","roa","categoryAverageRatios","upsideCapture","downsideCapture",
+             "maxDrawdownSource","drawdownRecoveryDays","drawdownDate","annualizedReturnSource","annualizedRiskSource","analystRating",
+             "annualPerformance","growthOf10k","standardDeviationSource","sharpeSource","sortinoSource"]
     fund_by_code={}
     for f in funds:
         for c in (f.get("directGrowthCode"),f.get("regularGrowthCode"),f.get("otherGrowthCode"),f.get("repCode")):
@@ -308,16 +437,20 @@ def main():
                                   "policy":"Rotates through the oldest deepDataAt records; factsheet/ratio fields are slow-changing."},indent=2)
     meta=load(DATA/"meta.json",{})
     meta["schemaVersion"]=8
-    meta["deepRefreshAt"]=NOW.isoformat()
+    meta["deepLastAttemptAt"]=NOW.isoformat()
+    if ok>0:
+        meta["deepRefreshAt"]=NOW.isoformat()
     meta["deepMetricsCodes"]=len(bycode)
     meta.setdefault("methodology",{})["deepEnrichment"]="Rotating scheme-detail + family portfolio enrichment (allocation, sectors, credit quality, managers, top holdings); non-null values only; old valid fields retained on source failure."
     sh=meta.setdefault("sourceHealth",{})
     sh["mfdata-deep"]={"ok":ok>0,"checkedAt":NOW.isoformat(),"attempted":len(selected),"success":ok,"failure":fail,"touchedFunds":touched}
     write(DATA/"meta.json",meta,indent=2)
-    print(json.dumps({"attempted":len(selected),"success":ok,"failure":fail,"touchedFunds":touched,"deepCodes":len(bycode)},indent=2))
-    # A total outage must fail the workflow so stale deep data is not labelled as freshly successful.
+    result={"attempted":len(selected),"success":ok,"failure":fail,"touchedFunds":touched,"deepCodes":len(bycode),"errorSamples":error_samples}
+    print(json.dumps(result,indent=2))
+    # Provider outages are fail-soft: preserve previous values and surface an explicit
+    # warning/source-health state instead of making the whole scheduled pipeline red.
     if selected and ok==0:
-        raise SystemExit("Deep enrichment source returned zero successful records; retained previous data.")
+        print("::warning::Deep enrichment returned zero successful records. Previous deep data was retained; deepRefreshAt was NOT advanced.")
 
 if __name__=="__main__":
     main()
