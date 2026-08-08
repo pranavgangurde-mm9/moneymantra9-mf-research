@@ -740,14 +740,22 @@ def dates_in(v):
 
 
 def candidate_name(cells):
-    bad = re.compile(r"^(open|upcoming|closed|equity|debt|hybrid|others?|scheme|fund name|status|category)$", re.I)
-    choices = []
+    """Return a scheme-like name only; reject article headings and generic prose."""
+    bad = re.compile(r"^(open|upcoming|closed|equity|debt|hybrid|others?|scheme|fund name|status|category|type)$", re.I)
+    prose = re.compile(r"\b(why|what|how|after the nfo|working style|clear picture|actually perform|watchlist|blogs?|my tool|article|guide|explained)\b", re.I)
+    choices=[]
     for c in cells:
-        c = re.sub(r"\s+", " ", text(c))
-        if len(c) < 6 or bad.match(c) or DATE_RE.search(c): continue
-        if re.search(r"\b(Fund|ETF|FOF|Plan|Scheme)\b", c, re.I): choices.append(c)
-    return max(choices, key=len) if choices else ""
+        c=re.sub(r"\s+"," ",text(c)).strip(" >|:-")
+        if len(c)<8 or len(c)>145 or bad.match(c) or DATE_RE.search(c) or prose.search(c) or ">>" in c: continue
+        if re.search(r"\b(Fund|ETF|FoF|Fund of Funds|Omni)\b",c,re.I): choices.append(c)
+    return min(choices,key=len) if choices else ""
 
+def plausible_nfo_name(name):
+    name=re.sub(r"\s+"," ",text(name)).strip()
+    if not name or len(name)>145 or ">>" in name: return False
+    if not re.search(r"\b(Fund|ETF|FoF|Fund of Funds|Omni)\b",name,re.I): return False
+    if re.search(r"\b(why|what|how|watchlist|blogs?|my tool|working style|clear picture|actually perform|after the nfo|article|guide)\b",name,re.I): return False
+    return True
 
 def parse_secondary_nfo(raw, source_id, source_name, url):
     soup = BeautifulSoup(raw, "html.parser")
@@ -783,7 +791,7 @@ def parse_secondary_nfo(raw, source_id, source_name, url):
     out, seen = [], set()
     for x in rows:
         k = (nfo_key(x["name"]), x["openDate"], x["closeDate"])
-        if not k[0] or k in seen: continue
+        if not k[0] or k in seen or not plausible_nfo_name(x.get('name')): continue
         seen.add(k); out.append(x)
     return out[:200]
 
@@ -805,7 +813,7 @@ def merge_nfo_evidence(existing_items, observations):
             y["official"] = bool(y.get("official"))
             grouped[nfo_key(y["name"])].append(y)
     for x in observations:
-        if x and x.get("name"):
+        if x and x.get("name") and plausible_nfo_name(x.get('name')):
             grouped[nfo_key(x["name"])].append(x)
 
     items, watch = [], []

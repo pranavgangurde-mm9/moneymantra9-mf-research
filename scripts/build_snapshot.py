@@ -193,7 +193,8 @@ def main():
             'riskometer':keep(name,amc,'riskometer'),'portfolioMonth':keep(name,amc,'portfolioMonth'),
             'pe':keep(name,amc,'pe'),'pb':keep(name,amc,'pb'),'turnover':keep(name,amc,'turnover'),
             'ytm':keep(name,amc,'ytm'),'modifiedDuration':keep(name,amc,'modifiedDuration','modDuration'),'averageMaturity':keep(name,amc,'averageMaturity','avgMaturity'),
-            'equityAllocation':keep(name,amc,'equityAllocation','equityAlloc'),'debtAllocation':keep(name,amc,'debtAllocation','debtAlloc'),'cashAllocation':keep(name,amc,'cashAllocation','cashAlloc'),
+            'equityAllocation':keep(name,amc,'equityAllocation','equityAlloc'),'debtAllocation':keep(name,amc,'debtAllocation','debtAlloc'),'cashAllocation':keep(name,amc,'cashAllocation','cashAlloc'),'commodityAllocation':keep(name,amc,'commodityAllocation'),'reitAllocation':keep(name,amc,'reitAllocation'),'otherAllocation':keep(name,amc,'otherAllocation'),
+            'alpha':keep(name,amc,'alpha'),'beta':keep(name,amc,'beta'),'informationRatio':keep(name,amc,'informationRatio'),'trackingError':keep(name,amc,'trackingError'),'exitLoad':keep(name,amc,'exitLoad'),'minSip':keep(name,amc,'minSip'),'fundManagers':keep(name,amc,'fundManagers'),'portfolioDate':keep(name,amc,'portfolioDate'),'deepDataAt':keep(name,amc,'deepDataAt'),
             'sourceSnapshot':args.source_label,
             'planCounts':{str(k):int(v) for k,v in pd.Series([x['plan'] for x in recs]).value_counts().items()},
             'optionCounts':{str(k):int(v) for k,v in pd.Series([x['option'] for x in recs]).value_counts().items()}

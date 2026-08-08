@@ -1,0 +1,14 @@
+MoneyMantra 9 MF Research Universe v8.1.3 — Deep Refresh Resilience Hotfix
+
+Fixes:
+- Deep refresh no longer fails the entire GitHub workflow when mfdata deep endpoints are temporarily unavailable.
+- Adds a quick source health check before launching the 80-fund batch.
+- Preserves previous valid deep data when the source is unavailable.
+- Does not advance deepRefreshAt unless at least one record refreshed successfully.
+- Records deepLastAttemptAt and source-health status separately.
+- Shortens retries/timeouts so outages do not waste ~30 minutes.
+- Adds dedicated family /ratios, /risk-detail and /performance enrichment.
+- Adds Standard Deviation, Sortino, Sharpe, Beta, Alpha, Information Ratio, R-squared, capture ratios, drawdown, ROE/ROA, PE/PB/PS, annual performance and more when supplied by the source.
+- Prints sample provider errors in the Actions log for future diagnosis.
+
+Apply only scripts/refresh_deep.py from the hotfix package to your existing repository.

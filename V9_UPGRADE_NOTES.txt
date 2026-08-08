@@ -1,0 +1,15 @@
+MoneyMantra 9 MF Research v9.0 — Research Clarity Clone
+
+Key changes:
+1. Open/Upcoming NFO tabs now require scheme-like names plus valid opening and closing dates.
+2. News, filing headlines, date conflicts and rejected records are separated into Signals / News.
+3. Category labels are cleaned for ETFs and overseas FoFs.
+4. Analytics pending and portfolio-data pending are shown as two different statuses.
+5. Detail and comparison typography is larger.
+6. Hybrid/multi-asset allocation shows Equity, Debt, Cash, Commodities, REITs/InvITs and Other.
+7. Comparison includes benchmark name, benchmark-return slots, excess-return slot, Alpha and allocation.
+8. Benchmark returns are shown only from verified official index series; missing series are labelled honestly.
+9. Alpha is included only when supplied by a verified benchmark-aware source.
+10. Research coverage percentage makes incomplete schemes easy to identify.
+
+Important: Deep factsheet fields depend on provider/AMC source availability and are never fabricated.

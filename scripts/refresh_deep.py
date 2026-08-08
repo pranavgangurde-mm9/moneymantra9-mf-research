@@ -235,7 +235,9 @@ def enrich_family(family_id):
             out["equityAllocation"]=num(alloc.get("equity_pct") or alloc.get("equity"))
             out["debtAllocation"]=num(alloc.get("bond_pct") or alloc.get("debt_pct") or alloc.get("debt"))
             out["cashAllocation"]=num(alloc.get("cash_pct") or alloc.get("cash"))
-            out["otherAllocation"]=num(alloc.get("other_pct") or alloc.get("other"))
+            out["commodityAllocation"]=num(alloc.get("commodity_pct") or alloc.get("commodities_pct") or alloc.get("gold_pct") or alloc.get("commodity"))
+            out["reitAllocation"]=num(alloc.get("reit_pct") or alloc.get("reits_pct") or alloc.get("reit_invit_pct"))
+            out["otherAllocation"]=num(alloc.get("other_pct") or alloc.get("other") or alloc.get("unclassified_pct"))
     except Exception as e: out["allocationError"]=str(e)[:180]
     # Sectors
     try:

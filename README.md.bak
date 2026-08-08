@@ -82,10 +82,3 @@ No public application can guarantee that it searches literally every page on the
 
 ## v8.1.1 hotfix
 Added the root requirements.txt required by setup-python pip caching and updated checkout/setup-python actions to Node-24 generations.
-
-### v8.1.2 parser hotfix
-The universe refresh now accepts both top-level JSON arrays and wrapped object responses from MFAPI/mfdata and skips malformed rows instead of aborting the full refresh.
-
-
-## v9.0 Research Clarity Clone
-See V9_UPGRADE_NOTES.txt for NFO validation, benchmark comparison, allocation and readability improvements.
