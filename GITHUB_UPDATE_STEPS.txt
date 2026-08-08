@@ -1,0 +1,160 @@
+MONEYMANTRA 9 MF RESEARCH v8.1 — UPDATE EXISTING GITHUB REPOSITORY
+=================================================================
+
+Existing repository:
+https://github.com/pranavgangurde-mm9/moneymantra9-mf-research/
+
+Recommended beginner method: GitHub Desktop.
+
+A. BACK UP AND REPLACE THE OLD APP
+---------------------------------
+1. Download and extract the complete v8.1 ZIP.
+2. Install GitHub Desktop and sign in to the GitHub account that owns:
+   pranavgangurde-mm9/moneymantra9-mf-research
+3. In GitHub Desktop choose File > Clone repository.
+4. Select pranavgangurde-mm9/moneymantra9-mf-research and Clone.
+5. Repository > Show in Explorer.
+6. Make a backup copy of that local repository folder if desired.
+7. In the cloned repository, replace the old app files with ALL files/folders
+   from the extracted v8.1 package. Do NOT delete the hidden .git folder.
+8. Confirm these important folders exist at repository root:
+   .github/workflows/
+   config/
+   data/
+   scripts/
+9. Return to GitHub Desktop.
+10. Commit message:
+    Upgrade MF Research to Universe v8.1
+11. Click Commit to main.
+12. Click Push origin.
+
+B. VERIFY THE FILE STRUCTURE ON GITHUB.COM
+------------------------------------------
+Open the repository in your browser. You should see:
+- .github
+- config
+- data
+- scripts
+- index.html
+- app.js
+- styles.css
+- service-worker.js
+- manifest.webmanifest
+
+Inside .github/workflows you should see:
+- Refresh NFO & Scheme Alerts
+- Refresh Universe Data
+- Refresh Official AMC Watch
+- Refresh Deep Scheme Data
+- Refresh Daily Risk Analytics
+- Deploy GitHub Pages
+
+C. ONE-TIME ACTIONS PERMISSION
+------------------------------
+1. Repository > Settings > Actions > General.
+2. Scroll to Workflow permissions.
+3. Choose Read and write permissions.
+4. Save.
+
+The data workflows need this permission so refreshed JSON can be committed back
+to the repository. No GitHub write token is stored in the public browser app.
+
+D. SET GITHUB PAGES TO ACTIONS
+------------------------------
+1. Repository > Settings > Pages.
+2. Under Build and deployment set Source to: GitHub Actions.
+3. Save.
+
+E. FIRST PRODUCTION REFRESH — RUN IN THIS ORDER
+-----------------------------------------------
+Open Repository > Actions.
+
+1. Refresh NFO & Scheme Alerts
+   Run workflow > Run workflow. Wait for green check.
+
+2. Refresh Universe Data
+   Run workflow > Run workflow. Wait for green check.
+
+3. Refresh Official AMC Watch
+   Run workflow > Run workflow. This discovers official AMC websites from AMFI
+   member pages and scans a bounded set of NFO/notice/addendum/factsheet links.
+   Wait for green check.
+
+4. Refresh Deep Scheme Data
+   Run workflow > Run workflow. This rotates through deep factsheet/portfolio
+   fields such as ratios, allocation, holdings, sectors, credit quality and
+   managers. It may take longer because the public API is rate-limited.
+
+5. Refresh Daily Risk Analytics
+   Run workflow > Run workflow. This rebuilds standard deviation, Sharpe,
+   Sortino, drawdown, CAGR and rolling-return statistics from NAV history.
+
+6. Deploy GitHub Pages
+   Usually it runs automatically after successful refresh workflows. If needed,
+   open Deploy GitHub Pages and run it manually once.
+
+F. AUTOMATIC REFRESH AFTER SETUP
+--------------------------------
+- NFO + scheme-change discovery: every 30 minutes, 7 days/week.
+- Full universe/counts/NAV/TER/AUM: hourly, 7 days/week.
+- Official AMC web watch: every 4 hours, 7 days/week.
+- Deep scheme/portfolio enrichment: every 4 hours, 7 days/week.
+- Historical NAV risk analytics: daily, 7 days/week.
+
+GitHub scheduled jobs can occasionally start later than the exact cron minute.
+The jobs are intentionally offset from :00 to reduce scheduler congestion.
+
+G. WHAT “SYNC LATEST” MEANS IN THE PHONE APP
+--------------------------------------------
+Sync latest does NOT make the iPhone/Android device scrape dozens of websites.
+It bypasses the browser cache and downloads the newest validated data snapshot
+already published by GitHub Actions.
+
+For an immediate server-side crawl, the repository owner can open:
+https://github.com/pranavgangurde-mm9/moneymantra9-mf-research/actions
+and manually run the relevant workflow.
+
+H. WEEKEND / MARKET-HOLIDAY BEHAVIOUR
+-------------------------------------
+This application refreshes by calendar time, not stock-market time.
+
+Example on a Saturday:
+- NAV date may still correctly show Friday.
+- NFO list can update Saturday.
+- AMFI/SEBI/AMC filing or addendum can update Saturday.
+- subscription/SIP/STP restriction notices can update Saturday.
+- source-health timestamp should show the latest weekend refresh.
+
+The app therefore displays separate timestamps for each data family instead of
+pretending every field has the same date.
+
+I. VERIFY THE LIVE APP AFTER DEPLOYMENT
+---------------------------------------
+1. Open the GitHub Pages link.
+2. Hard refresh once (Ctrl+F5 on Windows).
+3. If an old PWA remains on phone, close it fully and reopen it. If necessary,
+   remove the old Home Screen PWA once and reinstall it.
+4. Open Data Universe & freshness.
+5. Check:
+   - 30-min NFO/change discovery timestamp
+   - hourly universe timestamp
+   - Official AMC website watch timestamp
+   - daily analytics timestamp
+   - source health / failures
+6. Open NFO Centre and inspect Open / Upcoming / Recently Closed / Discovery Watch.
+7. Check dashboard Direct / Regular / Other counts.
+8. Open several funds and verify Standard Deviation, Sharpe, Sortino and deep-data
+   timestamps.
+
+J. IF A WORKFLOW FAILS
+----------------------
+1. GitHub > Actions > click the failed workflow.
+2. Open the failed job and copy the red error lines.
+3. Do not delete the old published JSON just because one source fails. The scripts
+   are designed to retain last-known-good data and expose source staleness.
+4. Send the error text/screenshot for diagnosis.
+
+K. FUTURE CODE UPDATES
+----------------------
+For future app-code changes, replace changed files in the cloned repository,
+commit and Push origin. Normal data refreshes do not require manual uploads.

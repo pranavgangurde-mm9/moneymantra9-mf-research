@@ -1,0 +1,95 @@
+MONEYMANTRA 9 MUTUAL FUND UNIVERSE v8.1 — ARCHITECTURE & TEST NOTES
+==================================================================
+
+CORE DESIGN
+-----------
+Client: static PWA on GitHub Pages.
+Data refresh: GitHub Actions, not the client browser.
+Primary read path: same-origin prevalidated JSON.
+Reason: low latency, no client-side CORS dependence, consistent iPhone/Android data.
+
+REFRESH LAYERS
+--------------
+1. 30-minute discovery: NFOs, SIFs, SEBI filing pipeline, scheme operational alerts.
+2. Hourly universe: scheme codes, NAV/date, active/inactive detection, counts,
+   Direct/Regular/other bifurcation, TER, AUM and NFO reconciliation.
+3. 4-hour official AMC watch: AMFI member directory -> official AMC domains ->
+   bounded homepage/sitemap discovery of NFO/addendum/notice/factsheet/TER links.
+4. 4-hour deep rotation: structured factsheet/portfolio enrichment.
+5. Daily historical NAV analytics: CAGR, standard deviation, downside deviation,
+   Sharpe, Sortino, max drawdown, Calmar and rolling returns.
+
+SOURCE CONFIDENCE
+-----------------
+Tier 1: AMFI, SEBI, official AMC websites.
+Tier 2: structured public APIs/mirrors for coverage/failover.
+Tier 3: independent NFO/product sentinels.
+Tier 4: search/news discovery.
+
+Conflicting dates are not silently overwritten. Official evidence wins where
+clearly identifiable. Otherwise the record can remain single-source or move to
+Discovery Watch.
+
+CURRENT BUILD-SEED VALIDATION
+-----------------------------
+Underlying funds: 3,734 total / 3,351 active.
+Scheme-plan-option records: 16,358 total / 14,252 active.
+Direct: 6,604; Regular: 4,111; Legacy/Other: 2,985; ETF/Exchange: 361;
+Retail: 118; Institutional: 73.
+Analytics scheme codes: 4,916.
+Seed codes with 3Y Standard Deviation: 2,823.
+Seed codes with 3Y Sortino: 2,823.
+TER records: 1,622.
+NFO seed: 33 tracked + 1 conflict/watch item.
+Scheme operational-alert seed: 2.
+
+NFO BUILD SEED ON 8-AUG-2026
+----------------------------
+Date logic classifies the seed as 8 Open, 10 Upcoming and 15 Recently Closed.
+This is deliberately a build seed. The first GitHub discovery/universe jobs are
+the production-current refresh and should populate detailed source health.
+
+LOW-LATENCY TEST
+----------------
+Local seed test from development environment:
+- funds-lite JSON parse: tens of milliseconds.
+- analytics JSON parse: single-digit milliseconds in the prior smoke test.
+- in-memory filter: a few milliseconds.
+Network latency on GitHub Pages depends on the user's connection/CDN, but external
+NFO/AMC/API crawling is removed from the normal client interaction path.
+
+SECURITY / RELIABILITY
+----------------------
+- No GitHub write credential embedded in public JavaScript.
+- Client Sync latest is read-only/cache-busting.
+- Server refresh occurs in GitHub Actions with repository permissions.
+- Network-first service-worker strategy for data/app shell.
+- Old valid data is retained on upstream failure where possible.
+- Source health, timestamps, errors and confidence are visible.
+
+TESTS PERFORMED IN AUTHORING ENVIRONMENT
+----------------------------------------
+- app.js JavaScript syntax: PASS.
+- Python refresh scripts compile: PASS.
+- workflow YAML parses structurally: PASS.
+- build validator count consistency: PASS.
+- plan and option bifurcation sums: PASS.
+- funds-lite/full row consistency: PASS.
+- NFO seed non-empty/current build classification: PASS.
+- local static server request test: PASS in prior v8 build.
+
+NOT END-TO-END TESTED LOCALLY
+-----------------------------
+The authoring container cannot reliably resolve/retrieve all external websites,
+so the complete network crawl (AMFI/SEBI/AMC/mfdata/sentinels) cannot be executed
+end-to-end here. The first GitHub Actions runs are therefore the production
+network test. Each workflow validates output before committing so a catastrophic
+empty refresh should fail rather than replace a valid snapshot.
+
+IMPORTANT REAL-WORLD LIMITATION
+-------------------------------
+No crawler can guarantee literal 100% coverage of every web page or zero latency.
+Sites can block automation, change markup, require JavaScript/CAPTCHA, go offline
+or publish contradictory data. v8.1 addresses this with broad source monitoring,
+official source priority, source-health telemetry, multiple sentinels, conflict
+handling, bounded official AMC discovery and last-known-good retention.

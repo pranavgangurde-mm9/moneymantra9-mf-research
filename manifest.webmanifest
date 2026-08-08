@@ -1,13 +1,13 @@
 {
-  "name": "MoneyMantra 9 MF Analytics with NFO Centre",
-  "short_name": "MF + NFO",
+  "name": "MoneyMantra 9 Mutual Fund Universe Research",
+  "short_name": "MM9 MF Research",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#f4f7fb",
-  "theme_color": "#102a43",
+  "theme_color": "#102f4f",
   "orientation": "any",
-  "description": "Secure mutual fund research, comparisons, rolling returns, live scheme discovery and NFO tracking.",
+  "description": "24x7 multi-source mutual fund, NFO, SIF and risk analytics research PWA.",
   "icons": [
     {
       "src": "icon-192.png",

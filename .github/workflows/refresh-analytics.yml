@@ -1,0 +1,62 @@
+name: Refresh Daily Risk Analytics
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Runs every day, including Saturday/Sunday. NAV source dates may remain the last dealing day.
+    - cron: '45 1 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mf-data-write
+  cancel-in-progress: false
+
+jobs:
+  analytics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install analytics dependencies
+        run: python -m pip install --upgrade requests pandas numpy duckdb pyarrow
+
+      - name: Compute NAV analytics
+        run: python scripts/refresh_analytics.py
+
+      - name: Validate analytics output
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('data/analytics.json',encoding='utf-8'))
+          assert len(a.get('byCode',{})) > 3000, len(a.get('byCode',{}))
+          populated=sum(1 for v in a['byCode'].values() if v.get('stdDev3Y') is not None)
+          sortino=sum(1 for v in a['byCode'].values() if v.get('sortino3Y') is not None)
+          assert populated > 1000, populated
+          assert sortino > 1000, sortino
+          print('scheme codes',len(a['byCode']),'with stddev',populated,'with sortino',sortino)
+          PY
+
+      - name: Commit analytics
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/analytics.json data/meta.json
+          if git diff --cached --quiet; then
+            echo 'No analytics changes.'
+          else
+            git commit -m 'data: daily risk and rolling analytics refresh'
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push
+          fi

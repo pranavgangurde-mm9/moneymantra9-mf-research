@@ -1,0 +1,66 @@
+name: Refresh Universe Data
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 24x7, including weekends/holidays. Offset from the hour to reduce Actions congestion.
+    - cron: '23 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mf-data-write
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install refresh dependencies
+        run: python -m pip install --upgrade requests pandas beautifulsoup4 lxml
+
+      - name: Refresh universe, NAV, counts, TER, AUM, NFO, SIF and filings
+        run: python scripts/refresh_fast.py
+
+      - name: Validate refreshed snapshot
+        run: |
+          python scripts/validate_build.py
+          python - <<'PY'
+          import json, pathlib
+          required=['meta.json','counts.json','funds.json','funds-lite.json','variants.json','ter.json','nfos.json','amc_aum.json','source_health.json','changes.json','sebi_pipeline.json','registry.json','product_watch.json','alerts.json','deep_metrics.json']
+          for name in required:
+              p=pathlib.Path('data')/name
+              if not p.exists() or p.stat().st_size < 2:
+                  raise SystemExit(f'Missing/empty {p}')
+              json.load(open(p,encoding='utf-8'))
+          c=json.load(open('data/counts.json',encoding='utf-8'))
+          assert c['activeSchemeRecords'] > 10000, c
+          assert c['activeUnderlyingFunds'] > 2000, c
+          print('Universe validation OK:', c['activeSchemeRecords'], 'active plan-option records')
+          PY
+
+      - name: Commit refreshed data
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/
+          if git diff --cached --quiet; then
+            echo 'No data changes.'
+          else
+            git commit -m 'data: hourly universe refresh'
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push
+          fi

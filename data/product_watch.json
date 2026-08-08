@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-08-08T07:30:00Z",
+  "items": [
+    {
+      "id": "sif-sbi-magnum-equity-ex-top100",
+      "name": "Magnum Equity Ex-Top 100 Long Short Fund",
+      "amc": "SBI Mutual Fund",
+      "productType": "Specialised Investment Fund (SIF)",
+      "category": "Equity long-short SIF strategy",
+      "openDate": "2026-08-07",
+      "closeDate": "2026-08-20",
+      "minimum": "₹10,00,000 (Morningstar observed; verify ISID)",
+      "benchmark": "Verify latest ISID",
+      "objective": "SIF long-short equity strategy; maintained separately from ordinary mutual-fund NFOs.",
+      "officialUrl": "https://www.amfiindia.com/sif/new-fund-offer",
+      "source": "AMFI SIF / SEBI filing universe + Morningstar current product list",
+      "sourceDate": "2026-08-08",
+      "confidence": "Observed; verify official AMFI SIF/ISID dates",
+      "offerPrice": "₹10"
+    }
+  ],
+  "note": "SIF and adjacent regulated products are kept separate from ordinary mutual-fund NFOs. Dates are only shown when verified by the scheduled refresh.",
+  "sourceStatus": []
+}

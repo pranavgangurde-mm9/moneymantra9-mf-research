@@ -1,0 +1,64 @@
+name: Refresh NFO & Scheme Alerts
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Calendar-time refresh; intentionally runs on weekends and market holidays.
+    # Offset away from :00 because scheduled GitHub Actions can be busier then.
+    - cron: '13,43 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mf-data-write
+  cancel-in-progress: false
+
+jobs:
+  discovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade requests pandas beautifulsoup4 lxml
+
+      - name: Refresh NFO, SIF, filing and scheme-change discovery
+        run: python scripts/refresh_discovery.py
+
+      - name: Validate discovery output
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          for n in ['nfos.json','product_watch.json','sebi_pipeline.json','alerts.json','source_health.json','meta.json']:
+              p=pathlib.Path('data')/n
+              assert p.exists() and p.stat().st_size > 2, p
+              json.load(open(p,encoding='utf-8'))
+          n=json.load(open('data/nfos.json',encoding='utf-8'))
+          # fail only on malformed/empty total universe; a source outage should preserve prior data.
+          assert len(n.get('items',[]))+len(n.get('watch',[])) >= 5, 'NFO cache unexpectedly empty'
+          print('NFO verified/observed:',len(n.get('items',[])),'watch:',len(n.get('watch',[])))
+          PY
+
+      - name: Commit discovery data
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/nfos.json data/product_watch.json data/sebi_pipeline.json data/alerts.json data/source_health.json data/meta.json
+          if git diff --cached --quiet; then
+            echo 'No discovery changes.'
+          else
+            git commit -m 'data: 30-minute NFO and scheme-alert refresh'
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push
+          fi

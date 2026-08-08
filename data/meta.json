@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 8,
+  "generatedAt": "2026-08-08T08:30:00Z",
+  "sourceDate": "2026-08-07",
+  "source": "Daily AMFI-derived snapshot via InertExpert2911/Mutual_Fund_Data (7 Aug 2026 seed)",
+  "fundsFile": "funds.json",
+  "variantsFile": "variants.json",
+  "countsFile": "counts.json",
+  "analyticsFile": "analytics.json",
+  "nfoFile": "nfos.json",
+  "terFile": "ter.json",
+  "methodology": {
+    "stdDev": "3Y daily returns annualised with sqrt(252)",
+    "sharpe": "(3Y CAGR - 6.5% risk-free rate) / annualised standard deviation",
+    "sortino": "(3Y CAGR - 6.5% risk-free rate) / annualised downside deviation",
+    "rolling": "Monthly observations; annualised CAGR for 1Y/3Y/5Y windows",
+    "nfoConsensus": "Official evidence is highest confidence; two independent matching sources are cross-verified; a single credible source with valid dates remains visible as single-source observed; date conflicts remain in Discovery Watch.",
+    "weekendPolicy": "Refresh jobs run by calendar schedule. NAV/returns can remain at the last dealing day while NFO, filings, TER, scheme master and operational notices can still change on non-trading days.",
+    "lowLatency": "App loads funds-lite.json first; full funds and variants are lazy-loaded only for details/export.",
+    "officialAmcWatch": "AMFI member directory discovers official AMC websites; bounded homepage/sitemap scanning detects NFO/addendum/notice/factsheet changes. Official web discoveries supplement, not silently overwrite, central AMFI/SEBI data.",
+    "deepEnrichment": "Rotating scheme-detail plus portfolio enrichment: ratios, allocation, top holdings, sectors, credit quality and manager tenure where structured sources supply them; valid older values are retained on source failure."
+  },
+  "fastRefreshAt": "2026-08-07T16:37:42.356263+00:00",
+  "analyticsRefreshAt": "2026-07-18T00:00:00Z",
+  "analyticsCodes": 4916,
+  "sourceHealth": {
+    "schemeMaster": {
+      "ok": true,
+      "records": 16358,
+      "note": "7 Aug 2026 seed snapshot"
+    },
+    "ter": {
+      "ok": true,
+      "records": 1622,
+      "note": "7 Aug 2026 seed snapshot"
+    },
+    "nfo": {
+      "ok": true,
+      "records": 33,
+      "note": "8 Aug 2026 cross-source build seed: 8 open, 10 upcoming, 15 recently closed. Run GitHub discovery workflows after upload for production refresh."
+    },
+    "schemeAum": {
+      "ok": false,
+      "note": "Official AMFI RSS matching begins in GitHub scheduled refresh"
+    },
+    "officialAmcWatch": {
+      "ok": false,
+      "records": 0,
+      "note": "Awaiting first Refresh Official AMC Watch GitHub Action."
+    }
+  },
+  "buildSeedAt": "2026-08-08T08:30:00Z",
+  "seedSnapshotNote": "v8 build seed updated with current NFO observations found on 8 Aug 2026; run GitHub workflows after upload for production refresh.",
+  "sourceRegistry": "config/source_registry.json",
+  "refreshPolicy": "NFO & scheme-alert discovery every 30 minutes; full scheme universe hourly; official AMC website watch every 4 hours; deep scheme/portfolio data every 4 hours; historical NAV risk analytics daily. All schedules run 7 days a week including weekends and market holidays.",
+  "discoveryRefreshPolicy": "Every 30 minutes, 24x7 including weekends and market holidays. Central official sources + independent sentinels + search/news discovery.",
+  "appVersion": "8.1"
+}

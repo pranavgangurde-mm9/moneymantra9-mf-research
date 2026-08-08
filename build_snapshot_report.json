@@ -1,0 +1,66 @@
+{
+  "appVersion": "8.1",
+  "builtAt": "2026-08-08T08:45:00Z",
+  "architecture": "Static-first same-origin PWA + GitHub Actions multi-source aggregation",
+  "refreshLayers": {
+    "nfoAndSchemeDiscovery": "every 30 minutes, calendar time",
+    "universe": "hourly, calendar time",
+    "officialAmcWatch": "every 4 hours, calendar time",
+    "deepPortfolio": "every 4 hours, rotating batch",
+    "riskAnalytics": "daily"
+  },
+  "validation": {
+    "underlyingFunds": 3734,
+    "activeUnderlyingFunds": 3351,
+    "schemeRecords": 16358,
+    "activeSchemeRecords": 14252,
+    "planActive": {
+      "Direct": 6604,
+      "Regular": 4111,
+      "Legacy / Other": 2985,
+      "ETF / Exchange": 361,
+      "Retail": 118,
+      "Institutional": 73
+    },
+    "optionActive": {
+      "IDCW / Dividend": 7073,
+      "Growth": 5229,
+      "Other": 1809,
+      "Bonus": 139,
+      "Segregated Portfolio": 2
+    },
+    "amcs": 55,
+    "analyticsCodes": 4916,
+    "stdDevCodes": 2823,
+    "sortinoCodes": 2823,
+    "nfoRecords": 33,
+    "nfoWatch": 1,
+    "schemeAlerts": 2,
+    "officialAMCWebsites": 0,
+    "officialAMCLeads": 0,
+    "terRecords": 1622,
+    "fundsLiteBytes": 1827933,
+    "fundsFullBytes": 4872620,
+    "errors": []
+  },
+  "performanceSmoke": {
+    "funds": 3734,
+    "active": 3351,
+    "directGrowthFunds": 2463,
+    "searchFlexi": 49,
+    "parseFundsMs": 28.7,
+    "parseAnalyticsMs": 7.3,
+    "filterMs": 4.5,
+    "analyticsCodes": 4916,
+    "activeSchemeRecords": 14252
+  },
+  "sourceRegistryEntries": 33,
+  "networkTestLimitation": "Full external-source crawl could not be executed end-to-end in the authoring container; first GitHub Actions run is the production network test.",
+  "tests": [
+    "app.js node syntax PASS",
+    "all Python scripts compile PASS",
+    "all workflow YAML structural parse PASS",
+    "build data consistency PASS",
+    "official AMC synthetic parser PASS"
+  ]
+}

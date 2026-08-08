@@ -1,0 +1,34 @@
+{
+  "underlyingFunds": 3734,
+  "activeUnderlyingFunds": 3351,
+  "schemeRecords": 16358,
+  "activeSchemeRecords": 14252,
+  "planActive": {
+    "Direct": 6604,
+    "Regular": 4111,
+    "Legacy / Other": 2985,
+    "ETF / Exchange": 361,
+    "Retail": 118,
+    "Institutional": 73
+  },
+  "optionActive": {
+    "IDCW / Dividend": 7073,
+    "Growth": 5229,
+    "Other": 1809,
+    "Bonus": 139,
+    "Segregated Portfolio": 2
+  },
+  "amcs": 55,
+  "analyticsCodes": 4916,
+  "stdDevCodes": 2823,
+  "sortinoCodes": 2823,
+  "nfoRecords": 33,
+  "nfoWatch": 1,
+  "schemeAlerts": 2,
+  "officialAMCWebsites": 0,
+  "officialAMCLeads": 0,
+  "terRecords": 1622,
+  "fundsLiteBytes": 1827933,
+  "fundsFullBytes": 4872620,
+  "errors": []
+}

@@ -1,0 +1,11 @@
+{
+  "funds": 3734,
+  "active": 3351,
+  "directGrowthFunds": 2463,
+  "searchFlexi": 49,
+  "parseFundsMs": 25.3,
+  "parseAnalyticsMs": 8.2,
+  "filterMs": 4.5,
+  "analyticsCodes": 4916,
+  "activeSchemeRecords": 14252
+}

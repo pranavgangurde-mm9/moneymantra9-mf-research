@@ -1,0 +1,328 @@
+{
+  "generatedAt": "2026-08-08T08:30:00Z",
+  "sources": {
+    "seed-scheme-master": {
+      "ok": true,
+      "records": 16358,
+      "checkedAt": "2026-08-08T08:30:00Z",
+      "note": "7 Aug 2026 scheme snapshot bundled with build"
+    },
+    "seed-nfo-consensus": {
+      "ok": true,
+      "records": 33,
+      "checkedAt": "2026-08-08T08:30:00Z",
+      "note": "8 Aug 2026 multi-source build seed; first GitHub discovery run will replace source health"
+    },
+    "official-amc-web-watch": {
+      "ok": false,
+      "records": 0,
+      "checkedAt": "2026-08-08T08:30:00Z",
+      "note": "Awaiting first GitHub AMC Watch run"
+    }
+  },
+  "registry": {
+    "schemaVersion": 4,
+    "updated": "2026-08-08",
+    "policy": "Tier 1 official AMFI/SEBI and official AMC websites are authoritative. Tier 2 structured APIs provide coverage/failover. Tier 3 independent NFO/product sentinels detect gaps. Tier 4 search/news discovery detects operational changes and missing launches but never silently overrides official data. Official AMC domains are discovered from AMFI member pages and scanned on a bounded 4-hour schedule. Every source is timestamped and health-checked; conflicts remain visible.",
+    "sources": [
+      {
+        "id": "amfi-navall",
+        "name": "AMFI Complete NAV",
+        "tier": 1,
+        "kind": "scheme_master",
+        "official": true,
+        "url": "https://portal.amfiindia.com/spages/NAVAll.txt",
+        "frequency": "hourly"
+      },
+      {
+        "id": "amfi-nfo-rss",
+        "name": "AMFI NFO RSS",
+        "tier": 1,
+        "kind": "nfo",
+        "official": true,
+        "url": "https://portal.amfiindia.com/rssNAV.aspx?nfo=y",
+        "frequency": "hourly"
+      },
+      {
+        "id": "amfi-nfo-page",
+        "name": "AMFI New Fund Offer page",
+        "tier": 1,
+        "kind": "nfo",
+        "official": true,
+        "url": "https://www.amfiindia.com/new-fund-offer",
+        "frequency": "hourly"
+      },
+      {
+        "id": "amfi-aum-directory",
+        "name": "AMFI RSS Directory",
+        "tier": 1,
+        "kind": "aum",
+        "official": true,
+        "url": "https://www.amfiindia.com/rss-feeds",
+        "frequency": "hourly"
+      },
+      {
+        "id": "sebi-mf-drafts",
+        "name": "SEBI Mutual Fund Draft Filings",
+        "tier": 1,
+        "kind": "pipeline",
+        "official": true,
+        "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=37&ssid=39",
+        "frequency": "hourly"
+      },
+      {
+        "id": "sebi-mf-registry",
+        "name": "SEBI Registered Mutual Funds",
+        "tier": 1,
+        "kind": "registry",
+        "official": true,
+        "url": "https://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=23",
+        "frequency": "daily"
+      },
+      {
+        "id": "mfdata",
+        "name": "mfdata.in API",
+        "tier": 2,
+        "kind": "scheme_enrichment",
+        "official": false,
+        "url": "https://mfdata.in/api/v1",
+        "frequency": "hourly/deep"
+      },
+      {
+        "id": "mfapi",
+        "name": "MFapi.in API",
+        "tier": 2,
+        "kind": "nav_fallback",
+        "official": false,
+        "url": "https://api.mfapi.in",
+        "frequency": "hourly"
+      },
+      {
+        "id": "scheme-csv-mirror",
+        "name": "Daily scheme master mirror",
+        "tier": 2,
+        "kind": "scheme_master",
+        "official": false,
+        "url": "https://raw.githubusercontent.com/InertExpert2911/Mutual_Fund_Data/refs/heads/main/mutual_fund_data.csv",
+        "frequency": "hourly"
+      },
+      {
+        "id": "ter-tracker",
+        "name": "TER tracker",
+        "tier": 2,
+        "kind": "ter",
+        "official": false,
+        "url": "https://raw.githubusercontent.com/captn3m0/india-mutual-fund-ter-tracker/refs/heads/main/data.csv",
+        "frequency": "hourly"
+      },
+      {
+        "id": "sharekhan-nfo",
+        "name": "Sharekhan NFO listing",
+        "tier": 3,
+        "kind": "nfo_sentinel",
+        "official": false,
+        "url": "https://www.sharekhan.com/mutual-funds/upcoming-and-current-nfo",
+        "frequency": "hourly"
+      },
+      {
+        "id": "hdfcsec-nfo",
+        "name": "HDFC Securities NFO listing",
+        "tier": 3,
+        "kind": "nfo_sentinel",
+        "official": false,
+        "url": "https://www.hdfcsec.com/market/mutual-fund/new-fund-offer-nfo",
+        "frequency": "hourly"
+      },
+      {
+        "id": "5paisa-nfo",
+        "name": "5paisa NFO listing",
+        "tier": 3,
+        "kind": "nfo_sentinel",
+        "official": false,
+        "url": "https://www.5paisa.com/mutual-funds/nfo",
+        "frequency": "hourly"
+      },
+      {
+        "id": "capitalmarket-nfo",
+        "name": "Capital Market NFO listing",
+        "tier": 3,
+        "kind": "nfo_sentinel",
+        "official": false,
+        "url": "https://www.capitalmarket.com/markets/mutualfund/new-fund-offering.aspx?sectionname=new-fund-offering",
+        "frequency": "hourly"
+      },
+      {
+        "id": "goodreturns-nfo",
+        "name": "Goodreturns NFO listing",
+        "tier": 3,
+        "kind": "nfo_sentinel",
+        "official": false,
+        "url": "https://www.goodreturns.in/mutual-funds/nfo/",
+        "frequency": "hourly"
+      },
+      {
+        "id": "sahifund-nfo",
+        "name": "SahiFund NFO listing",
+        "tier": 3,
+        "kind": "nfo_sentinel",
+        "official": false,
+        "url": "https://sahifund.com/latest-nfo-opportunities/",
+        "frequency": "hourly"
+      },
+      {
+        "id": "news-discovery",
+        "name": "Google News RSS discovery",
+        "tier": 4,
+        "kind": "news_discovery",
+        "official": false,
+        "url": "https://news.google.com/rss/search",
+        "frequency": "hourly"
+      },
+      {
+        "id": "amfi-sif-nfo",
+        "name": "AMFI SIF NFO page",
+        "tier": 1,
+        "kind": "sif_nfo",
+        "official": true,
+        "url": "https://www.amfiindia.com/sif/new-fund-offer",
+        "frequency": "hourly"
+      },
+      {
+        "id": "amfi-sif-nav",
+        "name": "AMFI SIF Latest NAV",
+        "tier": 1,
+        "kind": "sif_universe",
+        "official": true,
+        "url": "https://www.amfiindia.com/sif/latest-nav",
+        "frequency": "hourly"
+      },
+      {
+        "id": "mutualfundsindia-nfo",
+        "name": "MutualFundsIndia NFO listing",
+        "tier": 3,
+        "kind": "nfo_sentinel",
+        "official": false,
+        "url": "https://mfiframes.mutualfundsindia.com/MutualFundIndia/NFO.aspx",
+        "frequency": "hourly"
+      },
+      {
+        "id": "navindia-nfo",
+        "name": "NAVIndia NFO listing",
+        "tier": 3,
+        "kind": "nfo_sentinel",
+        "official": false,
+        "url": "https://www.navindia.com/",
+        "frequency": "hourly"
+      },
+      {
+        "id": "anandrathi-nfo",
+        "name": "Anand Rathi NFO listing",
+        "tier": 3,
+        "kind": "nfo_sentinel",
+        "official": false,
+        "url": "https://anandrathi.com/nfo",
+        "frequency": "hourly"
+      },
+      {
+        "id": "icicidirect-nfo",
+        "name": "ICICI Direct NFO listing",
+        "tier": 3,
+        "kind": "nfo_sentinel",
+        "official": false,
+        "url": "https://www.icicidirect.com/mutual-funds/nfo",
+        "frequency": "hourly"
+      },
+      {
+        "id": "morningstar-nfo",
+        "name": "Morningstar India NFO list",
+        "tier": 3,
+        "kind": "nfo_sentinel",
+        "official": false,
+        "url": "https://www.morningstar.in/nfo/nfolist.aspx",
+        "frequency": "hourly"
+      },
+      {
+        "id": "groww-nfo",
+        "name": "Groww NFO page",
+        "tier": 3,
+        "kind": "nfo_sentinel",
+        "official": false,
+        "url": "https://groww.in/nfo",
+        "frequency": "hourly"
+      },
+      {
+        "id": "scheme-change-news",
+        "name": "Scheme-change news discovery",
+        "tier": 4,
+        "kind": "scheme_change_discovery",
+        "official": false,
+        "url": "https://news.google.com/rss/search",
+        "frequency": "hourly"
+      },
+      {
+        "id": "amfi-members",
+        "name": "AMFI Member AMC Directory",
+        "tier": 1,
+        "kind": "amc_registry",
+        "official": true,
+        "url": "https://www.amfiindia.com/aboutamfi?tab=members",
+        "frequency": "4-hourly"
+      },
+      {
+        "id": "official-amc-web-watch",
+        "name": "Official AMC website watch (AMFI-discovered domains)",
+        "tier": 1,
+        "kind": "amc_discovery",
+        "official": true,
+        "url": "Dynamic from AMFI member details",
+        "frequency": "4-hourly"
+      },
+      {
+        "id": "etmoney-nfo",
+        "name": "ET Money NFO listing",
+        "tier": 3,
+        "kind": "nfo_sentinel",
+        "official": false,
+        "url": "https://www.etmoney.com/mutual-funds/nfo",
+        "frequency": "30-min discovery/hourly universe"
+      },
+      {
+        "id": "indmoney-nfo",
+        "name": "INDmoney NFO listing",
+        "tier": 3,
+        "kind": "nfo_sentinel",
+        "official": false,
+        "url": "https://www.indmoney.com/mutual-funds/nfo",
+        "frequency": "30-min discovery/hourly universe"
+      },
+      {
+        "id": "angelone-mf-news",
+        "name": "Angel One mutual-fund launch/news sentinel",
+        "tier": 3,
+        "kind": "nfo_and_change_sentinel",
+        "official": false,
+        "url": "https://www.angelone.in/news/mutual-funds",
+        "frequency": "30-min discovery/hourly universe"
+      },
+      {
+        "id": "et-mf-news",
+        "name": "Economic Times mutual-fund launch/change discovery",
+        "tier": 4,
+        "kind": "news_discovery",
+        "official": false,
+        "url": "https://economictimes.indiatimes.com/mf",
+        "frequency": "via Google News RSS discovery"
+      },
+      {
+        "id": "moneycontrol-mf-news",
+        "name": "Moneycontrol mutual-fund change/NFO discovery",
+        "tier": 4,
+        "kind": "news_discovery",
+        "official": false,
+        "url": "https://www.moneycontrol.com/news/business/mutual-funds/",
+        "frequency": "via search/news discovery"
+      }
+    ]
+  },
+  "note": "Build seed status. Run all refresh workflows after upload to populate live response/latency/error details."
+}
