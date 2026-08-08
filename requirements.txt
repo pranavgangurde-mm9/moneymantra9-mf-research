@@ -1,0 +1,10 @@
+# MoneyMantra 9 MF Research Universe v8.1.1
+# Root dependency manifest used by actions/setup-python pip caching.
+# Individual workflows install only the subset they need.
+requests>=2.31
+pandas>=2.1
+beautifulsoup4>=4.12
+lxml>=5.0
+numpy>=1.26
+duckdb>=1.1
+pyarrow>=15.0
