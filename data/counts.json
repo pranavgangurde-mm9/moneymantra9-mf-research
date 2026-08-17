@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T20:49:43.981908+00:00",
+  "generatedAt": "2026-08-17T21:46:28.833493+00:00",
   "sourceDate": "2026-08-17",
   "schemeRecords": 39685,
   "activeSchemeRecords": 37768,
@@ -46,8 +46,8 @@
   "assetActive": {
     "Hybrid": 1003,
     "Debt": 7762,
-    "Equity": 2414,
-    "ETF": 366,
+    "Equity": 2413,
+    "ETF": 367,
     "Other": 23794,
     "Fund of Funds": 797,
     "Solution Oriented": 145,
