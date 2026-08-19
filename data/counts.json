@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-08-19T16:53:31.014107+00:00",
+  "generatedAt": "2026-08-19T17:47:40.512754+00:00",
   "sourceDate": "2026-08-18",
   "schemeRecords": 39685,
-  "activeSchemeRecords": 37771,
-  "inactiveSchemeRecords": 1914,
+  "activeSchemeRecords": 37774,
+  "inactiveSchemeRecords": 1911,
   "underlyingFunds": 16467,
   "activeUnderlyingFunds": 16127,
   "amcs": 57,
@@ -17,7 +17,7 @@
   },
   "planActive": {
     "Direct": 12545,
-    "Regular": 9972,
+    "Regular": 9975,
     "ETF / Exchange": 377,
     "Legacy / Other": 11793,
     "Retail": 1421,
@@ -32,13 +32,13 @@
   },
   "optionActive": {
     "IDCW / Dividend": 18674,
-    "Growth": 14852,
+    "Growth": 14855,
     "Bonus": 444,
     "Other": 3792,
     "Segregated Portfolio": 9
   },
   "schemeTypeActive": {
-    "Open Ended": 9653,
+    "Open Ended": 9656,
     "Close Ended": 4783,
     "Awaiting enrichment": 23294,
     "Interval Fund": 41
@@ -46,17 +46,17 @@
   "assetActive": {
     "Hybrid": 1003,
     "Debt": 7762,
-    "Equity": 2415,
+    "Equity": 2416,
     "ETF": 367,
     "Other": 23794,
     "Fund of Funds": 797,
     "Solution Oriented": 145,
-    "Index / Passive": 1443,
+    "Index / Passive": 1445,
     "Commodity": 45
   },
   "growthByPlanActive": {
     "Direct": 5103,
-    "Regular": 3933,
+    "Regular": 3936,
     "Other": 5816
   }
 }
