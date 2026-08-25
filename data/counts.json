@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T13:25:02.461801+00:00",
+  "generatedAt": "2026-08-25T15:11:27.143959+00:00",
   "sourceDate": "2026-08-24",
   "schemeRecords": 39705,
   "activeSchemeRecords": 37804,
@@ -38,9 +38,9 @@
     "Segregated Portfolio": 10
   },
   "schemeTypeActive": {
-    "Open Ended": 9686,
+    "Open Ended": 9685,
     "Close Ended": 4783,
-    "Awaiting enrichment": 23294,
+    "Awaiting enrichment": 23295,
     "Interval Fund": 41
   },
   "assetActive": {
