@@ -385,6 +385,15 @@
       "records": 0,
       "checkedAt": "2026-09-15T18:18:52.067626+00:00",
       "note": "News/search discovery only; previous valid leads retained on outage"
+    },
+    "mfdata-deep": {
+      "ok": false,
+      "checkedAt": "2026-09-15T19:49:27.400532+00:00",
+      "attempted": 0,
+      "success": 0,
+      "failure": 0,
+      "preservedPrevious": true,
+      "detail": "https://mfdata.in/health: ConnectionError: HTTPSConnectionPool(host='mfdata.in', port=443): Max retries exceeded with url: /health (Caused by ReadTimeoutError(\"HTTPSConnectionPool(hos | https://mfdata.in/api/v1/stats: ConnectionError: HTTPSConnectionPool(host='mfdata.in', port=443): Max retries exceeded with url: /api/v1/stats (Caused by ReadTimeoutError(\"HTTPSConnectionPo"
     }
   },
   "buildSeedAt": "2026-08-08T08:30:00Z",
@@ -397,5 +406,5 @@
   "nfoRefreshAt": "2026-09-15T16:53:51.174414+00:00",
   "alertRefreshAt": "2026-09-15T16:53:51.174414+00:00",
   "discoveryRefreshAt": "2026-09-15T16:53:51.174414+00:00",
-  "deepLastAttemptAt": "2026-09-15T13:51:19.984435+00:00"
+  "deepLastAttemptAt": "2026-09-15T19:49:27.400532+00:00"
 }
