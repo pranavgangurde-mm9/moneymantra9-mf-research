@@ -1,44 +1,44 @@
 {
-  "generatedAt": "2026-09-24T15:17:57.852825+00:00",
-  "sourceDate": "2026-09-20",
-  "schemeRecords": 39736,
-  "activeSchemeRecords": 37915,
+  "generatedAt": "2026-09-24T19:19:53.183580+00:00",
+  "sourceDate": "2026-09-24",
+  "schemeRecords": 39738,
+  "activeSchemeRecords": 37917,
   "inactiveSchemeRecords": 1821,
-  "underlyingFunds": 16496,
-  "activeUnderlyingFunds": 16183,
-  "amcs": 67,
+  "underlyingFunds": 16497,
+  "activeUnderlyingFunds": 16184,
+  "amcs": 68,
   "planAll": {
-    "Direct": 13398,
-    "Regular": 10239,
+    "Direct": 13408,
+    "Regular": 10249,
     "ETF / Exchange": 385,
-    "Legacy / Other": 12562,
+    "Legacy / Other": 12544,
     "Institutional": 1718,
     "Retail": 1434
   },
   "planActive": {
-    "Direct": 12596,
-    "Regular": 10035,
+    "Direct": 12606,
+    "Regular": 10045,
     "ETF / Exchange": 382,
-    "Legacy / Other": 11818,
+    "Legacy / Other": 11800,
     "Retail": 1421,
     "Institutional": 1663
   },
   "optionAll": {
-    "IDCW / Dividend": 19886,
-    "Growth": 15202,
+    "IDCW / Dividend": 19894,
+    "Growth": 15214,
     "Bonus": 477,
-    "Other": 4161,
+    "Other": 4143,
     "Segregated Portfolio": 10
   },
   "optionActive": {
-    "IDCW / Dividend": 18726,
-    "Growth": 14917,
+    "IDCW / Dividend": 18734,
+    "Growth": 14929,
     "Bonus": 444,
-    "Other": 3818,
+    "Other": 3800,
     "Segregated Portfolio": 10
   },
   "schemeTypeActive": {
-    "Open Ended": 9797,
+    "Open Ended": 9799,
     "Close Ended": 4783,
     "Awaiting enrichment": 23294,
     "Interval Fund": 41
@@ -46,17 +46,17 @@
   "assetActive": {
     "Hybrid": 1017,
     "Debt": 7763,
-    "Equity": 2448,
+    "Equity": 2430,
     "ETF": 375,
-    "Other": 23850,
+    "Other": 23864,
     "Fund of Funds": 813,
     "Solution Oriented": 145,
-    "Index / Passive": 1459,
+    "Index / Passive": 1465,
     "Commodity": 45
   },
   "growthByPlanActive": {
-    "Direct": 5130,
-    "Regular": 3967,
+    "Direct": 5136,
+    "Regular": 3973,
     "Other": 5820
   }
 }
