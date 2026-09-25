@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-25T19:59:31.522348+00:00",
+  "generatedAt": "2026-09-25T23:14:50.405172+00:00",
   "amfiMemberRegistry": {
-    "ok": true,
-    "checkedAt": "2026-09-25T19:59:31.522348+00:00",
-    "latencyMs": 1345,
-    "error": null,
+    "ok": false,
+    "checkedAt": "2026-09-25T23:14:50.405172+00:00",
+    "latencyMs": 30468,
+    "error": "ConnectTimeout: HTTPSConnectionPool(host='www.amfiindia.com', port=443): Max retries exceeded with url: /aboutamfi?tab=members (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.amfiindia.com', port=443) at 0x7fc21730df10>, 'Connection to www.amfiindia.com timed out. (connect timeout=30)'))",
     "note": "AMFI member index unavailable/unparseable; retained prior AMC registry."
   },
   "respondingHomepages": 0,
