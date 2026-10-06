@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-10-06T01:16:27.982854+00:00",
+  "generatedAt": "2026-10-06T11:11:48.851665+00:00",
   "amfiMemberRegistry": {
     "ok": true,
-    "checkedAt": "2026-10-06T01:16:27.982854+00:00",
-    "latencyMs": 1330,
+    "checkedAt": "2026-10-06T11:11:48.851665+00:00",
+    "latencyMs": 1875,
     "error": null,
     "note": "AMFI member index unavailable/unparseable; retained prior AMC registry."
   },
