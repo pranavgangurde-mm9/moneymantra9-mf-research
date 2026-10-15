@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-15T18:25:28.393224+00:00",
-  "sourceDate": "2026-10-14",
+  "generatedAt": "2026-10-15T22:30:13.542968+00:00",
+  "sourceDate": "2026-10-15",
   "schemeRecords": 39781,
   "activeSchemeRecords": 37962,
   "inactiveSchemeRecords": 1819,
@@ -25,16 +25,16 @@
   },
   "optionAll": {
     "IDCW / Dividend": 19911,
-    "Growth": 15236,
+    "Growth": 15237,
     "Bonus": 477,
-    "Other": 4147,
+    "Other": 4146,
     "Segregated Portfolio": 10
   },
   "optionActive": {
     "IDCW / Dividend": 18752,
-    "Growth": 14951,
+    "Growth": 14952,
     "Bonus": 444,
-    "Other": 3805,
+    "Other": 3804,
     "Segregated Portfolio": 10
   },
   "schemeTypeActive": {
@@ -57,6 +57,6 @@
   "growthByPlanActive": {
     "Direct": 5147,
     "Regular": 3983,
-    "Other": 5821
+    "Other": 5822
   }
 }
