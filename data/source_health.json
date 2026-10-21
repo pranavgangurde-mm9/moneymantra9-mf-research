@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-21T13:58:38.415366+00:00",
+  "generatedAt": "2026-10-21T18:02:13.385253+00:00",
   "sources": {
     "scheme-csv-mirror": {
       "ok": true,
@@ -82,8 +82,8 @@
       "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=37&ssid=39",
       "http": 200,
       "bytes": 34958,
-      "latencyMs": 2278,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
+      "latencyMs": 2358,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
       "records": 21
     },
     "sebi-mf-registry": {
@@ -100,8 +100,8 @@
       "url": "https://portal.amfiindia.com/rssNAV.aspx?nfo=y",
       "http": 200,
       "bytes": 15482,
-      "latencyMs": 260,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
+      "latencyMs": 1053,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
       "records": 11
     },
     "amfi-nfo-page": {
@@ -109,8 +109,8 @@
       "url": "https://www.amfiindia.com/new-fund-offer",
       "http": 200,
       "bytes": 155529,
-      "latencyMs": 476,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
+      "latencyMs": 1245,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
       "records": 0
     },
     "groww-nfo": {
@@ -118,35 +118,35 @@
       "url": "https://groww.in/nfo",
       "http": 200,
       "bytes": 131884,
-      "latencyMs": 467,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
+      "latencyMs": 481,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
       "records": 0
     },
     "goodreturns-nfo": {
       "ok": true,
       "url": "https://www.goodreturns.in/mutual-funds/nfo/",
       "http": 200,
-      "bytes": 791069,
-      "latencyMs": 487,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
+      "bytes": 792026,
+      "latencyMs": 202,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
       "records": 15
     },
     "5paisa-nfo": {
       "ok": true,
       "url": "https://www.5paisa.com/mutual-funds/nfo",
       "http": 200,
-      "bytes": 285147,
-      "latencyMs": 1493,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
-      "records": 20
+      "bytes": 281399,
+      "latencyMs": 2105,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
+      "records": 18
     },
     "morningstar-nfo": {
       "ok": true,
       "url": "https://www.morningstar.in/nfo/nfolist.aspx",
       "http": 200,
-      "bytes": 166693,
-      "latencyMs": 1753,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
+      "bytes": 166695,
+      "latencyMs": 2927,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
       "records": 0
     },
     "sahifund-nfo": {
@@ -154,8 +154,8 @@
       "url": "https://sahifund.com/latest-nfo-opportunities/",
       "http": 200,
       "bytes": 139212,
-      "latencyMs": 1766,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
+      "latencyMs": 1713,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
       "records": 11
     },
     "navindia-nfo": {
@@ -163,8 +163,8 @@
       "url": "https://www.navindia.com/",
       "http": 200,
       "bytes": 687,
-      "latencyMs": 1245,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
+      "latencyMs": 1262,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
       "records": 0
     },
     "capitalmarket-nfo": {
@@ -172,17 +172,17 @@
       "url": "https://www.capitalmarket.com/markets/mutualfund/new-fund-offering.aspx?sectionname=new-fund-offering",
       "http": 200,
       "bytes": 154225,
-      "latencyMs": 2022,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
+      "latencyMs": 2506,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
       "records": 8
     },
     "hdfcsec-nfo": {
       "ok": true,
       "url": "https://www.hdfcsec.com/market/mutual-fund/new-fund-offer-nfo",
       "http": 200,
-      "bytes": 382732,
-      "latencyMs": 2143,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
+      "bytes": 382730,
+      "latencyMs": 855,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
       "records": 18
     },
     "mutualfundsindia-nfo": {
@@ -190,8 +190,8 @@
       "url": "https://mfiframes.mutualfundsindia.com/MutualFundIndia/NFO.aspx",
       "http": 200,
       "bytes": 120722,
-      "latencyMs": 1765,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
+      "latencyMs": 1775,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
       "records": 9
     },
     "indmoney-nfo": {
@@ -199,8 +199,8 @@
       "url": "https://www.indmoney.com/mutual-funds/nfo",
       "http": 200,
       "bytes": 358014,
-      "latencyMs": 423,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
+      "latencyMs": 256,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
       "records": 9
     },
     "angelone-mf-news": {
@@ -208,102 +208,102 @@
       "url": "https://www.angelone.in/news/mutual-funds",
       "http": 200,
       "bytes": 162390,
-      "latencyMs": 459,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
+      "latencyMs": 564,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
       "records": 7
     },
     "etmoney-nfo": {
       "ok": true,
       "url": "https://www.etmoney.com/mutual-funds/nfo",
       "http": 200,
-      "bytes": 192449,
-      "latencyMs": 975,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
+      "bytes": 192447,
+      "latencyMs": 734,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
       "records": 11
     },
     "anandrathi-nfo": {
       "ok": true,
       "url": "https://anandrathi.com/nfo",
       "http": 200,
-      "bytes": 490043,
-      "latencyMs": 1283,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
+      "bytes": 490054,
+      "latencyMs": 1241,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
       "records": 8
     },
     "sharekhan-nfo": {
       "ok": true,
       "url": "https://www.sharekhan.com/mutual-funds/upcoming-and-current-nfo",
       "http": 200,
-      "bytes": 252520,
-      "latencyMs": 3311,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
-      "records": 16
+      "bytes": 254913,
+      "latencyMs": 3823,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
+      "records": 19
     },
     "icicidirect-nfo": {
       "ok": false,
       "url": "https://www.icicidirect.com/mutual-funds/nfo",
       "error": "404 Client Error: Not Found for url: https://www.icicidirect.com/mutual-funds/nfo",
-      "latencyMs": 2151,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00"
+      "latencyMs": 2155,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00"
     },
     "official-amc-web-nfo": {
       "ok": false,
       "records": 0,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
       "note": "Awaiting first Official AMC Watch workflow or no extractable NFO dates found."
     },
     "news-discovery-1": {
       "ok": true,
       "url": "https://news.google.com/rss/search?q=%22mutual+fund%22+NFO+India+when%3A30d&hl=en-IN&gl=IN&ceid=IN:en",
       "http": 200,
-      "bytes": 78082,
-      "latencyMs": 550,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00"
+      "bytes": 80675,
+      "latencyMs": 332,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00"
     },
     "news-discovery-2": {
       "ok": true,
       "url": "https://news.google.com/rss/search?q=%22new+fund+offer%22+mutual+fund+India+when%3A30d&hl=en-IN&gl=IN&ceid=IN:en",
       "http": 200,
       "bytes": 40140,
-      "latencyMs": 266,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00"
+      "latencyMs": 237,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00"
     },
     "news-discovery-3": {
       "ok": true,
       "url": "https://news.google.com/rss/search?q=%22SIF%22+%22new+fund+offer%22+India+when%3A30d&hl=en-IN&gl=IN&ceid=IN:en",
       "http": 200,
-      "bytes": 21883,
-      "latencyMs": 258,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00"
+      "bytes": 19189,
+      "latencyMs": 203,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00"
     },
     "news-discovery-4": {
       "ok": true,
       "url": "https://news.google.com/rss/search?q=%22long+short+fund%22+NFO+India+when%3A30d&hl=en-IN&gl=IN&ceid=IN:en",
       "http": 200,
-      "bytes": 32098,
-      "latencyMs": 253,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00"
+      "bytes": 32433,
+      "latencyMs": 271,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00"
     },
     "news-discovery": {
       "ok": true,
-      "records": 44,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
+      "records": 45,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
       "note": "Discovery leads only; not authoritative"
     },
     "nfo-consensus": {
       "ok": true,
-      "verifiedRecords": 1908,
+      "verifiedRecords": 1913,
       "watchRecords": 3,
-      "newsLeads": 44,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00"
+      "newsLeads": 45,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00"
     },
     "amfi-sif-nfo": {
       "ok": true,
       "url": "https://www.amfiindia.com/sif/new-fund-offer",
       "http": 200,
-      "bytes": 154266,
-      "latencyMs": 483,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
+      "bytes": 154244,
+      "latencyMs": 466,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
       "records": 0
     },
     "amfi-sif-nav": {
@@ -311,70 +311,70 @@
       "url": "https://www.amfiindia.com/sif/latest-nav",
       "http": 200,
       "bytes": 151047,
-      "latencyMs": 244,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
+      "latencyMs": 239,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
       "codes": 0
     },
     "scheme-alert-news-1": {
       "ok": true,
       "url": "https://news.google.com/rss/search?q=%22mutual+fund%22+%22SIP%22+%28suspend+OR+suspension+OR+stop+OR+reopen%29+India+when%3A30d&hl=en-IN&gl=IN&ceid=IN:en",
       "http": 200,
-      "bytes": 99240,
-      "latencyMs": 334,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00"
+      "bytes": 99704,
+      "latencyMs": 351,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00"
     },
     "scheme-alert-news-2": {
       "ok": true,
       "url": "https://news.google.com/rss/search?q=%22mutual+fund%22+%28merger+OR+merge+OR+consolidation%29+scheme+India+when%3A30d&hl=en-IN&gl=IN&ceid=IN:en",
       "http": 200,
-      "bytes": 118517,
-      "latencyMs": 395,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00"
+      "bytes": 125987,
+      "latencyMs": 323,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00"
     },
     "scheme-alert-news-3": {
       "ok": true,
       "url": "https://news.google.com/rss/search?q=%22mutual+fund%22+%22fundamental+attributes%22+India+when%3A30d&hl=en-IN&gl=IN&ceid=IN:en",
       "http": 200,
       "bytes": 1209,
-      "latencyMs": 191,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00"
+      "latencyMs": 169,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00"
     },
     "scheme-alert-news-4": {
       "ok": true,
       "url": "https://news.google.com/rss/search?q=%22mutual+fund%22+%22fund+manager%22+%28change+OR+appointment+OR+resign%29+India+when%3A30d&hl=en-IN&gl=IN&ceid=IN:en",
       "http": 200,
-      "bytes": 71720,
-      "latencyMs": 314,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00"
+      "bytes": 72772,
+      "latencyMs": 286,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00"
     },
     "scheme-alert-news-5": {
       "ok": true,
       "url": "https://news.google.com/rss/search?q=%22mutual+fund%22+%22exit+load%22+change+India+when%3A30d&hl=en-IN&gl=IN&ceid=IN:en",
       "http": 200,
-      "bytes": 26461,
-      "latencyMs": 251,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00"
+      "bytes": 26481,
+      "latencyMs": 252,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00"
     },
     "scheme-alert-news-6": {
       "ok": true,
       "url": "https://news.google.com/rss/search?q=%22mutual+fund%22+%28subscription+OR+lumpsum%29+%28suspend+OR+resume+OR+reopen%29+India+when%3A30d&hl=en-IN&gl=IN&ceid=IN:en",
       "http": 200,
-      "bytes": 124928,
-      "latencyMs": 369,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00"
+      "bytes": 127254,
+      "latencyMs": 356,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00"
     },
     "scheme-alert-news-7": {
       "ok": true,
       "url": "https://news.google.com/rss/search?q=%22mutual+fund%22+%28renamed+OR+name+change%29+scheme+India+when%3A30d&hl=en-IN&gl=IN&ceid=IN:en",
       "http": 200,
-      "bytes": 86381,
-      "latencyMs": 465,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00"
+      "bytes": 85711,
+      "latencyMs": 386,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00"
     },
     "scheme-change-discovery": {
       "ok": true,
-      "records": 56,
-      "checkedAt": "2026-10-21T13:58:38.415366+00:00",
+      "records": 57,
+      "checkedAt": "2026-10-21T18:02:13.385253+00:00",
       "note": "News/search discovery only; previous valid leads retained on outage"
     }
   },
