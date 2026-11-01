@@ -1,60 +1,62 @@
 {
-  "generatedAt": "2026-10-31T22:37:58.043587+00:00",
-  "sourceDate": "2026-08-12",
-  "schemeRecords": 16551,
-  "activeSchemeRecords": 14535,
-  "inactiveSchemeRecords": 2016,
-  "underlyingFunds": 3789,
-  "activeUnderlyingFunds": 3435,
-  "amcs": 80,
+  "generatedAt": "2026-11-01T02:22:55.673235+00:00",
+  "sourceDate": "2026-11-01",
+  "schemeRecords": 39845,
+  "activeSchemeRecords": 38026,
+  "inactiveSchemeRecords": 1819,
+  "underlyingFunds": 16539,
+  "activeUnderlyingFunds": 16226,
+  "amcs": 81,
   "planAll": {
-    "Direct": 7536,
-    "Regular": 4388,
-    "ETF / Exchange": 387,
-    "Legacy / Other": 3963,
-    "Institutional": 132,
-    "Retail": 145
+    "Direct": 13461,
+    "Regular": 10299,
+    "ETF / Exchange": 389,
+    "Legacy / Other": 12544,
+    "Institutional": 1718,
+    "Retail": 1434
   },
   "planActive": {
-    "Direct": 6656,
-    "Regular": 4169,
-    "ETF / Exchange": 384,
-    "Legacy / Other": 3135,
-    "Institutional": 73,
-    "Retail": 118
+    "Direct": 12660,
+    "Regular": 10096,
+    "ETF / Exchange": 386,
+    "Legacy / Other": 11800,
+    "Retail": 1421,
+    "Institutional": 1663
   },
   "optionAll": {
-    "IDCW / Dividend": 8385,
-    "Growth": 5655,
-    "Bonus": 176,
-    "Other": 2313,
-    "Segregated Portfolio": 22
+    "IDCW / Dividend": 19942,
+    "Growth": 15268,
+    "Bonus": 477,
+    "Other": 4148,
+    "Segregated Portfolio": 10
   },
   "optionActive": {
-    "IDCW / Dividend": 7124,
-    "Growth": 5292,
-    "Bonus": 139,
-    "Other": 1958,
-    "Segregated Portfolio": 22
+    "IDCW / Dividend": 18783,
+    "Growth": 14983,
+    "Bonus": 444,
+    "Other": 3806,
+    "Segregated Portfolio": 10
   },
   "schemeTypeActive": {
-    "Open Ended": 9775,
-    "Close Ended": 4719,
+    "Open Ended": 9900,
+    "Close Ended": 4791,
+    "Awaiting enrichment": 23294,
     "Interval Fund": 41
   },
   "assetActive": {
-    "Hybrid": 1032,
-    "Debt": 7698,
-    "Equity": 2500,
-    "ETF": 362,
-    "Other": 675,
-    "Fund of Funds": 779,
+    "Hybrid": 1017,
+    "Debt": 7764,
+    "Equity": 2430,
+    "ETF": 382,
+    "Other": 23901,
+    "Fund of Funds": 829,
     "Solution Oriented": 145,
-    "Index / Passive": 1344
+    "Index / Passive": 1513,
+    "Commodity": 45
   },
   "growthByPlanActive": {
-    "Direct": 2563,
-    "Regular": 1715,
-    "Other": 1014
+    "Direct": 5163,
+    "Regular": 3999,
+    "Other": 5821
   }
 }
