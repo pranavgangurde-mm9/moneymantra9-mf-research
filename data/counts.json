@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-12T20:59:03.452558+00:00",
+  "generatedAt": "2026-11-13T02:00:30.313433+00:00",
   "sourceDate": "2026-11-12",
   "schemeRecords": 39871,
   "activeSchemeRecords": 38052,
@@ -8,33 +8,33 @@
   "activeUnderlyingFunds": 16238,
   "amcs": 83,
   "planAll": {
-    "Direct": 13469,
-    "Regular": 10306,
-    "ETF / Exchange": 394,
-    "Legacy / Other": 12550,
+    "Direct": 13472,
+    "Regular": 10311,
+    "ETF / Exchange": 390,
+    "Legacy / Other": 12546,
     "Institutional": 1718,
     "Retail": 1434
   },
   "planActive": {
-    "Direct": 12668,
-    "Regular": 10103,
-    "ETF / Exchange": 391,
-    "Legacy / Other": 11806,
+    "Direct": 12671,
+    "Regular": 10108,
+    "ETF / Exchange": 387,
+    "Legacy / Other": 11802,
     "Retail": 1421,
     "Institutional": 1663
   },
   "optionAll": {
-    "IDCW / Dividend": 19944,
-    "Growth": 15281,
+    "IDCW / Dividend": 19948,
+    "Growth": 15285,
     "Bonus": 477,
-    "Other": 4159,
+    "Other": 4151,
     "Segregated Portfolio": 10
   },
   "optionActive": {
-    "IDCW / Dividend": 18785,
-    "Growth": 14996,
+    "IDCW / Dividend": 18789,
+    "Growth": 15000,
     "Bonus": 444,
-    "Other": 3817,
+    "Other": 3809,
     "Segregated Portfolio": 10
   },
   "schemeTypeActive": {
@@ -44,19 +44,19 @@
     "Interval Fund": 41
   },
   "assetActive": {
-    "Hybrid": 1018,
+    "Hybrid": 1017,
     "Debt": 7764,
-    "Equity": 2433,
+    "Equity": 2430,
     "ETF": 384,
-    "Other": 23913,
+    "Other": 23915,
     "Fund of Funds": 835,
     "Solution Oriented": 145,
-    "Index / Passive": 1515,
+    "Index / Passive": 1517,
     "Commodity": 45
   },
   "growthByPlanActive": {
-    "Direct": 5169,
-    "Regular": 4004,
+    "Direct": 5171,
+    "Regular": 4006,
     "Other": 5823
   }
 }
