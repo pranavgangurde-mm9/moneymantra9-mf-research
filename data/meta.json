@@ -20,7 +20,7 @@
     "changeDiscovery": "Scheme operational-change news/search is discovery only and must be verified against official AMC/AMFI/SEBI notices."
   },
   "fastRefreshAt": "2026-11-18T04:36:07.606808+00:00",
-  "analyticsRefreshAt": "2026-11-17T09:45:22.494933+00:00",
+  "analyticsRefreshAt": "2026-11-18T09:14:12.967824+00:00",
   "analyticsCodes": 5395,
   "sourceHealth": {
     "scheme-csv-mirror": {
