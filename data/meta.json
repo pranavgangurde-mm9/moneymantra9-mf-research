@@ -399,7 +399,7 @@
     },
     "mfdata-deep": {
       "ok": false,
-      "checkedAt": "2026-11-22T16:37:31.577884+00:00",
+      "checkedAt": "2026-11-22T22:00:11.348305+00:00",
       "attempted": 0,
       "success": 0,
       "failure": 0,
@@ -417,5 +417,5 @@
   "nfoRefreshAt": "2026-11-22T21:02:07.496784+00:00",
   "alertRefreshAt": "2026-11-22T21:02:07.496784+00:00",
   "discoveryRefreshAt": "2026-11-22T21:02:07.496784+00:00",
-  "deepLastAttemptAt": "2026-11-22T16:37:31.577884+00:00"
+  "deepLastAttemptAt": "2026-11-22T22:00:11.348305+00:00"
 }
